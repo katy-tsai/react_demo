@@ -1,0 +1,15 @@
+.icons{
+  width: 80px;
+  height: 60px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  svg{
+    width: 80px;
+    height: 80px;
+  }
+  &.active{
+    border: 2px solid #f8903b;
+  }
+}

@@ -1,0 +1,94 @@
+$gutter-width: 20px;
+$grid-sum: 12;
+
+.container {
+  width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 0;
+  padding-right: 0;
+  box-sizing: border-box;
+}
+
+.row {
+  display: flex;
+  flex-wrap: wrap;
+  margin-left: 0;
+  margin-right: 0;
+  padding: 5px 0;
+  position: relative;
+}
+
+.row-right {
+  justify-content: flex-end;
+}
+
+@for $var from 1 through $grid-sum {
+  .col-#{$var} {
+    position: relative;
+    max-width: calc(100% * ($var / $grid-sum));
+    flex: 0 0 calc(100% * ($var / $grid-sum));
+    padding-left: 0px;
+    padding-right: 0px;
+    box-sizing: border-box;
+  }
+}
+
+$grid-breakpoints: ('': false,
+  sm: 576px,
+  md: 768px,
+  lg: 992px,
+  xl: 1200px,
+);
+
+%col {
+  position: relative !important;
+  padding-left: calc($gutter-width / 2);
+  padding-right: calc($gutter-width / 2);
+}
+
+@each $key,
+$value in $grid-breakpoints {
+  @for $var from 1 through $grid-sum {
+    @if not $value {
+      .col-#{$var} {
+        @extend %col;
+      }
+    }
+
+    @else {
+      .col-#{$key}-#{$var} {
+        @extend %col;
+      }
+    }
+  }
+}
+
+@each $key,
+$value in $grid-breakpoints {
+  @if not $value {
+    @for $var from 1 to $grid-sum {
+      .col-#{$var} {
+        max-width: calc(100% * ($var / $grid-sum));
+        flex: 0 0 calc((100% * ($var / $grid-sum)));
+      }
+    }
+  }
+
+  @else {
+    @media screen and (min-width: $value) {
+      @for $var from 1 to $grid-sum {
+        .col-#{$key}-#{$var} {
+
+          max-width: calc(100% * ($var / $grid-sum));
+          flex: 0 0 calc((100% * ($var / $grid-sum)));
+        }
+      }
+    }
+  }
+}
+
+.gutter-width {
+  margin-left: - calc(($gutter-width / 2));
+  margin-right: - calc(($gutter-width / 2));
+}

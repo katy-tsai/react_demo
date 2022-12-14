@@ -1,0 +1,23 @@
+.sidebar_div{
+  font-size: 2rem;
+  font-weight: bold;
+  background-color: #777777;
+  color:#000;
+  width: 220px;
+  padding-top: 20px;
+  text-align: center;
+  ul{
+    list-style-type: none;
+    display: flex;
+    flex-direction: column;
+    padding: 0;
+    justify-content: center;
+    li{
+     width: 90%;
+     height: 30px;
+     border-radius: 10px;
+     background-color: #AAAAAA;
+     margin: 10px;
+    }
+  }
+}
